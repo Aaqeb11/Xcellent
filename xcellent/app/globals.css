@@ -2,3 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (max-width: 464px) {
+  .card-item {
+    transition: all 0.3s ease;
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+
+  .card-item.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Optional: Adjust the dots for better visibility */
+.react-multi-carousel-dot-list {
+  bottom: -30px;
+}
+.custom-bg-white {
+  background-color: #ffffff !important;
+}
