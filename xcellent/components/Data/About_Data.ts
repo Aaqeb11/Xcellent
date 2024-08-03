@@ -1,7 +1,7 @@
-import service from "../public/service.png"
-import speedo from "../public/speedo.png"
-import search from "../public/Search.png"
-import wrench from "../public/Wrench.png"
+import service from "../../public/service.png"
+import speedo from "../../public/speedo.png"
+import search from "../../public/Search.png"
+import wrench from "../../public/Wrench.png"
 export const About_data = [
     {
         img: speedo,

@@ -22,3 +22,50 @@
 .custom-bg-white {
   background-color: #ffffff !important;
 }
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: none;
+  border: none;
+}
+
+.left-arrow {
+  left: 1px;
+}
+
+.right-arrow {
+  right: 1px;
+}
+
+.slider-container {
+  width: 100%;
+}
+
+.slider {
+  display: flex;
+  animation: slide 30s linear infinite;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.slide {
+  flex: 0 0 25%; /* Adjust this value based on how many items you want to show at once */
+}
+
+/* Optional: Pause animation on hover */
+.slider-container:hover .slider {
+  animation-play-state: paused;
+}
+.text-justify-center {
+  text-align: justify;
+  text-align-last: center;
+}
