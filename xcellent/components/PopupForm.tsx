@@ -14,7 +14,10 @@ interface FormData {
     phone: string;
     message: string;
   }
-  const PopupForm: FC<PopupFormProps> = ({ isOpen, onClose }) => {
+const PopupForm: FC<PopupFormProps> = ({ isOpen, onClose }) => {
+  const template = process.env.NEXT_PUBLIC_TEMPLATE;
+  const service = process.env.NEXT_PUBLIC_SERVICE;
+  const key = process.env.NEXT_PUBLIC_KEY;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
