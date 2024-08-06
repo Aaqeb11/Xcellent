@@ -56,7 +56,7 @@ export default function Home() {
   return (
     <main>
       <div className={`flex lg:gap-5 gap-5  items-center z-20 fixed lg:top-[82vh] ${scrolled?'lg:left-[90vw]':'lg:left-[80vw]'} top-[85vh] ${scrolled?'left-[85vw]':'left-[50vw]'} animate-pulse`}>
-      {scrolled?null : <p className="text-white text-lg">Contact Now!</p>}
+      {scrolled?null : <p className="text-white text-md md:text-lg font-bold">Contact Now!</p>}
       <Button_Component />
       </div>
       <section id="home" className="max-w-[1440px] min-h-screen overflow-hidden bg-black flex flex-col items-center scroll-smooth">
@@ -91,9 +91,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="min-h-screen flex flex-col">
+      <section className="min-h-screen flex flex-col relative">
         <div className="bg-black flex flex-col min-h-[30%] md:min-h-[40%] items-center">
-          <div className="flex items-center justify-center gap-2 pt-8">
+          <div className="flex items-center justify-center gap-2 pt-8 ">
             <div>
               <Image src={forward} alt="forward" />
             </div>
@@ -101,7 +101,7 @@ export default function Home() {
               <h1 className="text-white lg:text-6xl text-4xl">Services</h1>
             </div>
           </div>
-          <Image src={car_large} alt="car small" className="relative top-[5vh] lg:-mt-[15vh] " />
+          <Image src={car_large} alt="car small" className="relative top-[5vh] lg:-mt-[5vh] " />
         </div>
         <Services />
       </section>

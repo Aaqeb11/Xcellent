@@ -9,12 +9,12 @@ export const Data = [
     {
       img: engine_oil,
       title: "Oil Change",
-      info: "Regular oil changes help maintain engine efficiency, reduce wear and tear, and prevent costly repairs. " 
+      info: "Routine fluid swaps enhance engine health, limit parts wear, and avoid pricey fixes over time. These services extend vehicle life" 
     },
     {
       img: brake_disks,
       title: "Brakes",
-      info: " Our experienced technicians inspect and repair all components of your braking system, ensuring optimal performance and reliability",
+      info: "Our skilled mechanics examine and fix every part of your vehicle's brake assembly, guaranteeing peak function and dependability",
       
     },
     {
@@ -26,7 +26,7 @@ export const Data = [
     {
       img: gears,
       title: "Transmission",
-      info: "We address all aspects of your transmission, from routine maintenance to complex repairs, to ensure smooth operation and longevity.",
+      info: "We address all aspects of your transmission, from routine maintenance to complex repairs, to ensure smooth operation and longevity",
      
     },
     {
@@ -38,7 +38,7 @@ export const Data = [
     {
       img: tools,
       title: "General Service",
-      info: "From fluid checks to battery tests and brake inspections, we cover all essential aspects to ensure your vehicle runs smoothly ",
+      info: "From fluid checks to battery tests and brake inspections, we cover all essential aspects to ensure your vehicle runs smoothly",
       
     },
   ];

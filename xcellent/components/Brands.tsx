@@ -40,7 +40,7 @@ export default function Brands() {
                 alt={`Brand ${(index % brands.length) + 1}`}
                 width={200}
                 height={100}
-                objectFit="contain"
+                className="object-contain"
               />
             </div>
           </div>

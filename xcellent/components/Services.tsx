@@ -19,7 +19,7 @@ const Services = () => {
                 <Image src={data.img} alt="img" className="w-36 h-auto" />
                 <div className="flex flex-col items-center py-2 gap-4 px-4">
                   <h3 className=" text-[#FF0202] text-2xl md:text-3xl">{data.title}</h3>
-                  <p className=" text-black text-base md:text-lg text-justify">{data.info}</p>
+                  <p className=" text-black text-base md:text-lg text-center">{data.info}</p>
                 </div>
               </div>
             ))}

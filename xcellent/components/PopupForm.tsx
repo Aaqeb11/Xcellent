@@ -1,23 +1,20 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import Image from 'next/image';
 import forward from "../public/Forward.png";
-
+import { ToastContainer, toast } from "react-toastify";
+import emailjs from "emailjs-com";
+import "react-toastify/dist/ReactToastify.css";
 
 interface PopupFormProps {
     isOpen: boolean;
     onClose: () => void;
 }
-  
-interface FormData {
-    name: string;
-    email: string;
-    phone: string;
-    message: string;
-  }
+
 const PopupForm: FC<PopupFormProps> = ({ isOpen, onClose }) => {
   const template = process.env.NEXT_PUBLIC_TEMPLATE;
   const service = process.env.NEXT_PUBLIC_SERVICE;
   const key = process.env.NEXT_PUBLIC_KEY;
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,7 +22,10 @@ const PopupForm: FC<PopupFormProps> = ({ isOpen, onClose }) => {
     message: ''
   });
 
-  const handleChange = (e:any) => {
+  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
@@ -33,12 +33,69 @@ const PopupForm: FC<PopupFormProps> = ({ isOpen, onClose }) => {
     }));
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
-    onClose();
+
+    const errors: { [key: string]: string } = {};
+
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    }
+    // } else if (formData.name.trim().length < 8) {
+    //   errors.name = "Name must be at least 8 characters";
+    // }
+
+    if (!formData.phone.trim()) {
+      errors.phone = "Phone number is required";
+    } else if (formData.phone.trim().length !== 10) {
+      errors.phone = "Phone number must be of 10 digits";
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Email address is invalid";
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = "Description is required";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    emailjs.send(
+      service!,
+      template!,
+      formData,
+      key
+    ).then(
+      (response) => {
+        console.log("SUCCESS!", response.status, response.text);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+        setFormErrors({});
+        setIsSubmitted(true);
+        toast.success("Form Submitted Successfully!");
+      },
+      (err) => {
+        console.log("FAILED...", err);
+        toast.error("Form Submission Failed!");
+      }
+    );
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsSubmitted(false);
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -59,6 +116,7 @@ const PopupForm: FC<PopupFormProps> = ({ isOpen, onClose }) => {
             className="w-full p-2 bg-gray-800 text-white rounded"
             required
           />
+          {formErrors.name && <p className="error-message text-red-500">{formErrors.name}</p>}
           <input
             type="email"
             name="email"
@@ -68,6 +126,7 @@ const PopupForm: FC<PopupFormProps> = ({ isOpen, onClose }) => {
             className="w-full p-2 bg-gray-800 text-white rounded"
             required
           />
+          {formErrors.email && <p className="error-message text-red-500">{formErrors.email}</p>}
           <input
             type="tel"
             name="phone"
@@ -77,6 +136,7 @@ const PopupForm: FC<PopupFormProps> = ({ isOpen, onClose }) => {
             className="w-full p-2 bg-gray-800 text-white rounded"
             required
           />
+          {formErrors.phone && <p className="error-message text-red-500">{formErrors.phone}</p>}
           <textarea
             name="message"
             placeholder="Your Message"
@@ -85,6 +145,7 @@ const PopupForm: FC<PopupFormProps> = ({ isOpen, onClose }) => {
             className="w-full p-2 bg-gray-800 text-white rounded h-32"
             required
           ></textarea>
+          {formErrors.message && <p className="error-message text-red-500">{formErrors.message}</p>}
           <div className="flex justify-between">
             <button
               type="submit"
@@ -102,6 +163,7 @@ const PopupForm: FC<PopupFormProps> = ({ isOpen, onClose }) => {
           </div>
         </form>
       </div>
+      <ToastContainer autoClose={5000} limit={1} closeButton={false} />
     </div>
   );
 };
