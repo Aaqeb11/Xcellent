@@ -6,6 +6,10 @@ import bg_img3 from "../public/bg_img3.jpeg";
 import forward from "../public/Forward.png";
 import car_small from "../public/car_small.png";
 import car_large from "../public/car_large.png";
+import car from "../public/car.png";
+import car_new from "../public/car_new.png";
+import car_new2 from "../public/car_new2.png";
+import car2 from "../public/car2.png";
 import logo from "../public/logo.png";
 import React, { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
@@ -25,15 +29,20 @@ import { Button_Component } from "@/components/Button_Component";
 
 export default function Home() {
   const [scrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 100) {
+        // Adjust this value as needed
         setIsScrolled(true);
+        setIsVisible(false);
       } else {
         setIsScrolled(false);
+        setIsVisible(true);
       }
     };
 
@@ -56,15 +65,27 @@ export default function Home() {
   return (
     <main>
       <div
-        className={`flex lg:gap-5 gap-5  items-center z-20 fixed lg:top-[82vh] ${
-          scrolled ? "lg:left-[90vw]" : "lg:left-[80vw]"
-        } top-[85vh] ${scrolled ? "left-[85vw]" : "left-[50vw]"} animate-pulse`}
+        className={`
+    flex gap-5 items-center z-20 fixed 
+    bottom-4 right-4 md:bottom-8 md:right-8
+    animate-pulse
+  `}
       >
-        {scrolled ? null : (
-          <p className="text-white text-md md:text-lg font-bold">
+        <div className="overflow-hidden">
+          <p
+            className={`
+        text-white text-md md:text-lg font-bold
+        transition-all duration-300 ease-in-out
+        ${
+          isVisible
+            ? "opacity-100 translate-x-0 visible"
+            : "opacity-0 -translate-x-full invisible"
+        }
+      `}
+          >
             Contact Now!
           </p>
-        )}
+        </div>
         <Button_Component />
       </div>
       <section
@@ -79,7 +100,7 @@ export default function Home() {
           />
         </div>
         <Header />
-        <div className="relative w-full px-4 md:px-0 lg:w-[54vw] md:w-[80vw] min-h-[250px] shrink-0 flex flex-col lg:items-start items-center justify-between z-10 lg:mt-[40vh] mt-[30vh] lg:ml-[5.313vw] mx-auto gap-[22vh] lg:gap-0">
+        <div className="relative w-full px-4 md:px-0 lg:w-[54vw] md:w-[80vw] min-h-[250px] shrink-0 flex flex-col lg:items-start items-center justify-center z-10 lg:mt-[40vh] mt-[30vh] lg:ml-[5.313vw] mx-auto gap-[16vh] lg:gap-10">
           <div>
             <h1 className="md:text-6xl text-5xl text-white font-bold lg:text-left text-center">
               Professional Auto{" "}
@@ -92,11 +113,11 @@ export default function Home() {
               </span>
             </h1>
           </div>
-          <div className="flex lg:w-auto">
-            <button className="relative overflow-hidden group lg:p-3 p-2 rounded-[10px] text-white font-bold border-2 border-transparent hover:border-[#9E0506] transition-colors duration-300">
+          <div className="flex w-full justify-center lg:justify-start">
+            <button className="relative overflow-hidden group p-3 rounded-[10px] text-white font-bold border-2 border-transparent hover:border-[#9E0506] transition-colors duration-300">
               <span
                 onClick={openPopup}
-                className="relative z-10 lg:text-xl md:text-lg text-md px-[80px] md:px-[80px] lg:px-0"
+                className="relative z-10 lg:text-xl md:text-lg text-md px-14 md:px-10"
               >
                 GET A QUOTE
               </span>
@@ -106,7 +127,7 @@ export default function Home() {
         </div>
       </section>
       <section className="min-h-screen flex flex-col relative">
-        <div className="bg-black flex flex-col min-h-[30%] md:min-h-[40%] items-center">
+        <div className="bg-black flex flex-col min-h-[30%] md:min-h-[45%] items-center">
           <div className="flex items-center justify-center gap-2 pt-8 ">
             <div>
               <Image src={forward} alt="forward" />
@@ -116,9 +137,10 @@ export default function Home() {
             </div>
           </div>
           <Image
-            src={car_large}
+            src={car_new}
             alt="car small"
-            className="relative top-[5vh] lg:-mt-[5vh] "
+            className="relative top-[1vh] lg:top-[3vh] lg:-mt-[1vh] w-[80vw] h-auto"
+            quality={100}
           />
         </div>
         <Services />

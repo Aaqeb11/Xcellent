@@ -7,8 +7,10 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross1 } from "react-icons/rx";
 import PopupForm from "@/components/PopupForm";
+import { useRouter } from "next/navigation";
 
 export const Header = () => {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -70,9 +72,12 @@ export const Header = () => {
         <Image
           src={logo2}
           alt="bg_image"
-          className="lg:h-[16%] lg:w-[16%] md:w-[24vw] md:h-[8vh] h-[10vh] w-[40vw]"
+          className="lg:w-[160px] w-[150px] h-[75px] cursor-pointer"
           quality={100}
           priority={true}
+          onClick={() => {
+            router.push("/");
+          }}
         />
         <div className="hidden lg:flex justify-between items-center gap-8">
           <p className="text-white font-bold hover:text-[#e20303] cursor-pointer">

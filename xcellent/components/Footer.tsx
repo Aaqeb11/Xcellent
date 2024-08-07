@@ -13,13 +13,18 @@ export const Footer = () => {
       id="contact"
       className="bg-black rounded-lg shadow dark:bg-gray-900  "
     >
-      <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-between">
+      <div className="w-full max-w-screen-xl mx-auto p-2 md:py-8">
+        <div className="sm:flex sm:items-center sm:justify-between ">
           <a
             href="#"
             className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
           >
-            <Image src={logo2} alt="logo" className="w-[25%] h-30" />
+            <Image
+              src={logo2}
+              alt="logo"
+              className="w-[100px] lg:w-[150px]"
+              quality={100}
+            />
           </a>
           <ul className="flex  items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
