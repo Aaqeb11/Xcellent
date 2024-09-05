@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         alt: "Xcellent Tires Logo",
       },
     ],
-    url: "https://xcellenttires.com", // Replace with your actual URL
+    url: "https://xcellent.vercel.app/_next/static/media/logo2.3b0c3326.png", // Replace with your actual URL
     siteName: "Xcellent Tires",
     locale: "en_US",
     type: "website",
@@ -35,7 +35,9 @@ export const metadata: Metadata = {
     title: "Xcellent Tires",
     description:
       "Reliable, honest, and transparent auto repair services with state-of-the-art technology.",
-    images: ["../public/logo2.png"], // Ensure this path is correct
+    images: [
+      "https://xcellent.vercel.app/_next/static/media/logo2.3b0c3326.png",
+    ], // Ensure this path is correct
     // creator: "@xcellentires", // Replace with your Twitter handle if applicable
   },
   metadataBase: new URL("https://xcellenttires.com"), // Add this line with your base URL
