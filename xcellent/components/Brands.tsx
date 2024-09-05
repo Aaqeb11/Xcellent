@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import Image, { StaticImageData } from 'next/image';
+import { useState, useEffect } from "react";
+import Image, { StaticImageData } from "next/image";
 import nissan from "../public/nissan.png";
 import toyota from "../public/toyota.png";
 import honda from "../public/honda.png";
 import mercedes from "../public/mercedes2.png";
-import vw from "../public/Volkswagen.png"
-import audi from "../public/audi.png"
-import LandRover from "../public/LandRover.png"
-import BMW from "../public/BMW.png"
-import Skoda from "../public/Skoda.png"
+import vw from "../public/Volkswagen.png";
+import audi from "../public/Audi.png";
+import LandRover from "../public/LandRover.png";
+import BMW from "../public/BMW.png";
+import Skoda from "../public/Skoda.png";
 
 interface Brand {
   image: StaticImageData;
@@ -45,7 +45,6 @@ export default function Brands() {
             </div>
           </div>
         ))}
-        
       </div>
     </div>
   );
